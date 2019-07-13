@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +33,9 @@ public class RestaurantListActivity extends AppCompatActivity implements SwipeRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /* Set Toolbar Title */
+        setToolbarTitle();
+
         /* init UI */
         initUI();
 
@@ -41,6 +45,14 @@ public class RestaurantListActivity extends AppCompatActivity implements SwipeRe
         /* subscribe observers */
         subscribeRestaurantListObserver();
         subscribeToNetworkState();
+    }
+
+    /**
+     * Set default toolbar title.
+     */
+    private void setToolbarTitle() {
+        ActionBar mActionBar = getSupportActionBar();
+        if (mActionBar != null) mActionBar.setTitle(R.string.restaurant_list_activity_title);
     }
 
     /**
