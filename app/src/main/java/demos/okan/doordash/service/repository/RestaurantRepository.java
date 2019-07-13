@@ -25,6 +25,8 @@ public class RestaurantRepository {
     private LiveData<PagedList<Restaurant>> restaurantsLiveData;
     private LiveData<NetworkState> networkState;
 
+    private RestaurantDataSourceFactory dataSourceFactory;
+
     /**
      * Thread-Safe SingleTon method.
      *
@@ -43,7 +45,7 @@ public class RestaurantRepository {
     
     private RestaurantRepository() {
 
-        RestaurantDataSourceFactory dataSourceFactory = new RestaurantDataSourceFactory(RestaurantApiClient.getInstance());
+        dataSourceFactory = new RestaurantDataSourceFactory(RestaurantApiClient.getInstance());
 
         PagedList.Config pagedListConfig = new PagedList.Config.Builder()
                 .setEnablePlaceholders(true)
@@ -69,5 +71,12 @@ public class RestaurantRepository {
 
     public LiveData<NetworkState> getNetworkState() {
         return networkState;
+    }
+
+    /**
+     * Invalidates data loaded from DataSource in DataSourceFactory.
+     */
+    public void invalidate() {
+        dataSourceFactory.invalidate();
     }
 }

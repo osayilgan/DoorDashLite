@@ -23,4 +23,11 @@ public class RestaurantListViewModel extends ViewModel {
     public LiveData<NetworkState> getNetworkState() {
         return repository.getNetworkState();
     }
+
+    /**
+     * Invalidates the data being loaded from Repository.
+     */
+    public void invalidate() {
+        repository.invalidate();
+    }
 }

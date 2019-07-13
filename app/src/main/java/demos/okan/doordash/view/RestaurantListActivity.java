@@ -14,7 +14,7 @@ import demos.okan.doordash.R;
 import demos.okan.doordash.service.models.NetworkState;
 import demos.okan.doordash.viewmodel.RestaurantListViewModel;
 
-public class RestaurantListActivity extends AppCompatActivity {
+public class RestaurantListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "RestaurantListActivity";
 
@@ -58,6 +58,7 @@ public class RestaurantListActivity extends AppCompatActivity {
         /* Progress Bar */
         swipeRefreshLayout = findViewById(R.id.swipeToRefresh);
         swipeRefreshLayout.setRefreshing(false);
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     /**
@@ -89,5 +90,10 @@ public class RestaurantListActivity extends AppCompatActivity {
 
             Log.d(TAG, "Network Status : " + networkState.getMsg());
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        mRestaurantListViewModel.invalidate();
     }
 }
