@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">DoorDash</string>
+    <string name="app_name">DoorDashLite</string>
     <string name="restaurant_list_activity_title">Discover</string>
 </resources>
